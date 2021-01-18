@@ -1,0 +1,13 @@
+hp:
+  lr:
+  - 0.01
+  - 0.1
+  num_leaves:
+  - 15
+  - 63
+  lambda_l2:
+  - 0.0
+  boosting:
+  - gbdt
+num_epochs: 1000
+patience: 100

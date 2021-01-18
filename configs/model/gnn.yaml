@@ -1,0 +1,19 @@
+hp:
+  lr:
+  - 0.01
+  - 0.1
+  name:
+  - gat
+#  - gcn
+#  - agnn
+#  - appnp
+  mlp:
+  - true
+#  - false
+  dropout:
+#  - 0.0
+  - 0.5
+  hidden_dim:
+  - 64
+num_epochs: 10
+patience: 200

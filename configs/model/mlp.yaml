@@ -1,13 +1,13 @@
 hp:
   lr:
   - 0.01
-  - 0.1
+#  - 0.1
   num_layers:
   - 2
-  - 3
+#  - 3
   dropout:
   - 0.0
-  - 0.5
+#  - 0.5
   hidden_dim:
   - 64
 num_epochs: 10

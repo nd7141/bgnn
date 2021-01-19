@@ -4,9 +4,9 @@ hp:
   - 0.1
   name:
   - gat
-#  - gcn
-#  - agnn
-#  - appnp
+  - gcn
+  - agnn
+  - appnp
   mlp:
   - true
 #  - false

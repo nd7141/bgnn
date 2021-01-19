@@ -6,7 +6,7 @@ from bgnn.models.GBDT import GBDTCatBoost, GBDTLGBM
 from bgnn.models.MLP import MLP
 from bgnn.models.GNN import GNN
 from bgnn.models.BGNN import BGNN
-from bgnn.scripts.utils import NpEncoder
+from bgnn.scripts.utils import get_masks, NpEncoder
 
 import os
 import json
@@ -224,10 +224,10 @@ class RunModel:
         start2run = time.time()
         self.repeat_exp = repeat_exp
         self.max_seeds = max_seeds
-        print(dataset, args, task, repeat_exp, max_seeds, dataset_dir, config_dir)
+        print(dataset, args, task, repeat_exp, max_seeds)
 
-        dataset_dir = Path(dataset_dir) if dataset_dir else Path(__file__).parent.parent / 'datasets'
-        config_dir = Path(config_dir) if config_dir else Path(__file__).parent.parent / 'configs' / 'model'
+        dataset_dir = Path(dataset_dir) if dataset_dir else Path(__file__).parent / 'datasets'
+        config_dir = Path(config_dir) if config_dir else Path(__file__).parent / 'configs' / 'model'
         print(dataset_dir, config_dir)
 
         self.task = task

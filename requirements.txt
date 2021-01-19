@@ -4,12 +4,9 @@ catboost==0.24.4
 lightgbm==3.0.0
 networkx==2.5
 matplotlib==3.3.3
-torch==1.7.1+cu92
-dgl_cu92==0.5.3
 pandas==1.1.5
 tqdm==4.55.1
 fire==0.3.1
 omegaconf==2.0.5
 category_encoders==2.2.2
 scikit_learn==0.24.0
-utils==1.0.1

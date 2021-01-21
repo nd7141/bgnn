@@ -6,7 +6,7 @@ This code contains implementation of the following models for graphs:
 * **LightGBM**
 * **Fully-Connected Neural Network** (FCNN)
 * **GNN** (GAT, GCN, AGNN, APPNP)
-* **FCNN-GNN**
+* **FCNN-GNN** (GAT, GCN, AGNN, APPNP)
 * **ResGNN** (CatBoost + {GAT, GCN, AGNN, APPNP})
 * **BGNN** (end-to-end {CatBoost + {GAT, GCN, AGNN, APPNP}})
 
@@ -69,7 +69,7 @@ python scripts/run.py dataset models
             --save_folder: str = None
             --task: str = 'regression',
             --repeat_exp: int = 1,
-            --max_seeds: int = 1,
+            --max_seeds: int = 5,
             --dataset_dir: str = None,
             --config_dir: str = None
 ```
@@ -91,11 +91,12 @@ Each model is specifed by its config. Check [`configs/`](https://github.com/nd71
 
 Upon completion, the results wil be saved in the specifed folder (default: `results/{dataset}/day_month/`).
 This folder will contain `aggregated_results.json`, which will contain aggregated results for each model.
-Each model will have 4 numbers in this order: `mean metric` (rmse or accuracy), `std metric`, `mean runtime`, `std runtime`.
+Each model will have 4 numbers in this order: `mean metric` (RMSE or accuracy), `std metric`, `mean runtime`, `std runtime`.
 File `seed_results.json` will have results for each experiment and each seed. 
 Additional folders will contain loss values during training. 
 
 ---
+
 ###Examples
 
 The following script will launch all models on `House` dataset.  
@@ -115,7 +116,7 @@ python scripts/run.py vk lightgbm --repeat_exp 3 --max_seeds 5
 
 The following script will launch resgnn and bgnn models saving results to custom folder.  
 ```bash
-python scripts/run.py county resgnn bgnn --save_folder ./
+python scripts/run.py county resgnn bgnn --save_folder ./county_resgnn_bgnn
 ```
 
 ### Running on your dataset
@@ -133,7 +134,7 @@ You can also have `masks.json` specifying train/val/test splits.
 
 After that run the script as usual: 
 ```bash
-python scripts/run.py path/to/your/folder gnn catboost 
+python scripts/run.py path/to/your/dataset gnn catboost 
 ```
 
 ## Citation

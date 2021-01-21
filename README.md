@@ -1,5 +1,5 @@
 ### Boosted Graph Neural Networks
-The code and data for the ICLR 2021 paper: [Boost then Convolve: Gradient Boosting Meets Graph Neural Networks](https://openreview.net/forum?id=ebS5NUfoMKL)
+The code and data for the ICLR 2021 paper: [Boost then Convolve: Gradient Boosting Meets Graph Neural Networks](https://openreview.net/pdf?id=ebS5NUfoMKL)
 
 This code contains implementation of the following models for graphs: 
 * **CatBoost**
@@ -18,7 +18,7 @@ First, let's create a python environment:
 mkdir envs
 cd envs
 python -m venv bgnn_env
-source envs/bgnn_env/bin/activate
+source bgnn_env/bin/activate
 cd ..
 ```
 ---
@@ -30,7 +30,7 @@ unzip datasets.zip
 make install
 ```
 ---
-Next we need to install proper version of [PyTorch](https://pytorch.org/) and [DGL](https://www.dgl.ai/), depending on the cuda version of your machine.
+Next we need to install a proper version of [PyTorch](https://pytorch.org/) and [DGL](https://www.dgl.ai/), depending on the cuda version of your machine.
 We strongly encourage to use GPU-supported versions of DGL (the speed up in training can be 100x).
 
 First, determine your cuda version with `nvcc --version`. 
@@ -58,7 +58,7 @@ pip install dgl
 ```
 
 Tested versions of `torch` and `dgl` are:
-* torch==1.7.1+cpu
+* torch==1.7.1+cu92
 * dgl_cu92==0.5.3
 
 ## Running
@@ -89,6 +89,12 @@ Available options for models are `catboost`, `lightgbm`, `gnn`, `resgnn`, `bgnn`
 
 Each model is specifed by its config. Check [`configs/`](https://github.com/nd7141/bgnn/tree/master/configs/model) folder to specify parameters of the model and run.
 
+Upon completion, the results wil be saved in the specifed folder (default: `results/{dataset}/day_month/`).
+This folder will contain `aggregated_results.json`, which will contain aggregated results for each model.
+Each model will have 4 numbers in this order: `mean metric` (rmse or accuracy), `std metric`, `mean runtime`, `std runtime`.
+File `seed_results.json` will have results for each experiment and each seed. 
+Additional folders will contain loss values during training. 
+
 ---
 ###Examples
 
@@ -112,8 +118,6 @@ The following script will launch resgnn and bgnn models saving results to custom
 python scripts/run.py county resgnn bgnn --save_folder ./
 ```
 
-By default, results will be stored in `results/{dataset}/day_month/aggregated_results.json`.
-
 ### Running on your dataset
 To run the code on your dataset, it's necessary to prepare the files in the right format. 
 
@@ -121,7 +125,7 @@ You can check examples in `datasets/` folder.
 
 There should be at least `X.csv` (node features), `y.csv` (target labels), `graph.graphml` (graph in graphml format).
 
-Make sure to keep these filenames for your dataset.
+Make sure to keep _these_ filenames for your dataset.
 
 You can also have `cat_features.txt` specifying names of categorical columns.
 

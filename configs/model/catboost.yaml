@@ -7,6 +7,6 @@ hp:
   - 6
   l2_leaf_reg:
   - null
-num_epochs: 10
+num_epochs: 1000
 patience: 100
 verbose: false

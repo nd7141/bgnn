@@ -9,11 +9,11 @@ hp:
   - appnp
   mlp:
   - true
-#  - false
+  - false
   dropout:
-#  - 0.0
+  - 0.0
   - 0.5
   hidden_dim:
   - 64
-num_epochs: 10
+num_epochs: 2000
 patience: 200
